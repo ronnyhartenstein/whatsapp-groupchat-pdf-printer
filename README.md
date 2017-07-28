@@ -11,11 +11,11 @@
 ## msgstore.db herunterladen
 
 - Source-Dir anlegen und befüllen .. 
-  ```bash
-  mkdir source
-  cd source
-  adb pull /sdcard/WhatsApp/Databases/msgstore.db
-  ```
+```
+mkdir source
+cd source
+adb pull /sdcard/WhatsApp/Databases/msgstore.db
+```
 
 ## Medien herunterladen
 
