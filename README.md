@@ -10,7 +10,12 @@
 
 ## msgstore.db herunterladen
 
-- Source-Dir anlegen und befüllen .. `mkdir source; cd source; adb pull /sdcard/WhatsApp/Databases/msgstore.db`
+- Source-Dir anlegen und befüllen .. 
+  ```bash
+  mkdir source
+  cd source
+  adb pull /sdcard/WhatsApp/Databases/msgstore.db
+  ```
 
 ## Medien herunterladen
 
@@ -22,4 +27,7 @@
 - `./run_server.sh`
 - [http://0.0.0.0:4000/](http://0.0.0.0:4000/) im Browser öffnen
 
+## PDF bauen
 
+- `./build.sh`
+- `pdf/index-offset.pdf` öffnen
