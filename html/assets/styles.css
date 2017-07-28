@@ -1,0 +1,55 @@
+small, .gray { 
+    color: gray !important; 
+}
+h1, h2, h3, h4, h5, h6, h7, h8 {
+    font-family: Arial;
+}
+h2, h3 { 
+    margin-top: 40px; 
+}
+h4, h5, h6 { 
+    font-size: 21px; 
+    margin-top: 40px; 
+}
+p, div, th, td { 
+    font-family: Times New Roman;
+    font-size: 20px; 
+}
+th, td {
+    vertical-align: top;
+    padding: 5px;
+}
+img.img-responsive.center-block,
+img.attachment-post-thumbnail.size-post-thumbnail.wp-post-image {
+    max-height: 530px;
+    border-bottom-width: 15px;
+    border-top-width: 15px;
+    border-color: transparent;
+    border-style: solid;
+}
+.thumbnail img {
+    max-height: 400px;
+}
+
+.smiley {
+    height: 1em; 
+    max-height: 1em;
+    display: inline-block;
+    margin-top: -5px;
+}
+
+.thumbnail .caption {
+    font-size: 16px;
+    font-family: Arial;
+}
+
+@media print {
+    a:link:after,
+    a:visited:after {
+        content: "" !important;
+    }
+    a { color: darkblue; }
+    small, .gray { color: gray !important; }
+    .image_broken, .yt_broken { color: darkred; }
+    .yt_platzhalter { color: darkblue; }
+}
