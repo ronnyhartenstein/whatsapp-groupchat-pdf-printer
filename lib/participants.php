@@ -24,7 +24,7 @@ class participants {
   static function fwrite_list($f, $list) {
     fwrite($f, 'Mitwirkende:<ul>');
     $fn = function($v) use ($f) {
-      fwrite($f, "\n".'<li><span color="'.$v['color'].'">'.$v['name'].'</span></li>');
+      fwrite($f, "\n".'<li><span style="color:'.$v['color'].'">'.$v['name'].'</span></li>');
     };
     array_map($fn, $list);
     fwrite($f, '</ul>');
