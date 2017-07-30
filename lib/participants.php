@@ -10,7 +10,7 @@ class participants {
       FROM "main"."group_participants" 
       WHERE "gjid" = \''.$group_jid.'\'
     ');
-    $list = [];
+    $list = ['me' => ['color' => 'gray', 'name' => 'Ronny']];
     while ($v = $res->fetchArray()) {
       $list[$v['jid']] = [
         'color' => $colors[$col_idx],

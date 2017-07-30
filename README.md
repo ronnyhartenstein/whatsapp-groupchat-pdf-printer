@@ -2,8 +2,11 @@
 # WhatsApp Chat nach HTML und PDF wandeln
 
 TODO:
+- [x] Empfänger/Sender auflösen
+- [x] Whatsapp Design
 - [ ] Emoji durch Bilder ersetzen
-- [ ] Empfänger/Sender auflösen
+- [ ] fehlende Bilder rot ausgeben ("Bild fehlt [Name]") + Liste nach Abschluss
+- [ ] Videos als Thumbnails einbinden + berechnen bei Bedarf
 
 ## msgstore.db.crypt12 dekrypten
 
