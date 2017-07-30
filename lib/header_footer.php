@@ -1,8 +1,8 @@
 <?php
 
-fwrite_header($f) {
-  
-  fwrite($f, "
+class header_footer {
+  static function fwrite_header($f) {
+    fwrite($f, "
 <html>
 <head>
 <title>Timon's Blog</title>
@@ -16,5 +16,11 @@ fwrite_header($f) {
 <div class=\"container\">
 <h1>Timon's Blog</h1>
 ");
+  }
 
+  static function fwrite_footer($f) {
+    fwrite($f, '
+</body>
+</html>');
+  }
 }

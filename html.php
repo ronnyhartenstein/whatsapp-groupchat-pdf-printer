@@ -1,26 +1,21 @@
 <?php
-
-include 'lib/header.php';
-include 'lib/emoji.php';
-include 'lib/contacts.php';
-include 'lib/messages.php';
-include 'lib/group_participants.php';
-include 'lib/chat_group.php';
+set_include_path(get_include_path().PATH_SEPARATOR.'lib');
+spl_autoload_register();
 
 $f = fopen('html/index.html','w');
 
-fwrite_header($f);
+header_footer::fwrite_header($f);
 
 $db_wa = new SQLite3('source/wa.db');
-$contacts = load_contacts($db_wa);
+$contacts = contacts::load($db_wa);
 $db_wa->close();
 
 $db_msgstore = new SQLite3('source/msgstore.db');
-$jid_chatgroup = get_jid_of_group_by_subject('Timons Blog');
-$group_participants = get_group_participants($db_msgstore, $jid_chatgroup, $contacts);
-fwrite_participants_list($group_participants);
+$jid_chatgroup = chat_group::get_jid_of_group_by_subject($db_msgstore, 'Timons Blog');
+$group_participants = participants::get($db_msgstore, $jid_chatgroup, $contacts);
+participants::fwrite_list($f, $group_participants);
 
-$res_messages = query_messages($db_msgstore, $jid_chatgroup);
+$res_messages = messages::query($db_msgstore, $jid_chatgroup);
 
 while ($msg = $res_messages->fetchArray()) {
   if (empty($msg['data']) 
@@ -63,11 +58,9 @@ while ($msg = $res_messages->fetchArray()) {
   //fwrite($f, '<xmp>'.var_export($msg, 1).'</xmp>');
 }
 $res_messages->finalize();
-$db_messages->close();
+$db_msgstore->close();
 
-fwrite($f, '
-</body>
-</html>');
+header_footer::fwrite_footer($f);
 
 fclose($f);
 print "\nDone.";
