@@ -1,42 +1,28 @@
 <?php
 
+include 'lib/header.php';
+include 'lib/emoji.php';
+include 'lib/contacts.php';
+include 'lib/messages.php';
+include 'lib/group_participants.php';
+include 'lib/chat_group.php';
+
 $f = fopen('html/index.html','w');
 
-fwrite($f, "
-<html>
-<head>
-<title>Timon's Blog</title>
-<!-- generiert ".date('d.m.Y H:i:s')." //-->
-<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />
-<link href=\"/assets/bootstrap.min.css\" rel=\"stylesheet\">
-<link href=\"/assets/styles.css\" rel=\"stylesheet\">
-</head>
+fwrite_header($f);
 
-<body>
-<div class=\"container\">
-<h1>Timon's Blog</h1>
-");
+$db_wa = new SQLite3('source/wa.db');
+$contacts = load_contacts($db_wa);
+$db_wa->close();
 
-$db = new SQLite3('source/msgstore.db');
-$id = '4915159161040-1470252332@g.us';
+$db_msgstore = new SQLite3('source/msgstore.db');
+$jid_chatgroup = get_jid_of_group_by_subject('Timons Blog');
+$group_participants = get_group_participants($db_msgstore, $jid_chatgroup, $contacts);
+fwrite_participants_list($group_participants);
 
-/*
-$res = $db->query('
-  SELECT *, rowid "NAVICAT_ROWID" FROM "main"."message_thumbnails" 
-  WHERE "key_remote_jid" = \''.$id.'\'
-');
-$imgs = [];
-while ($img = $res->fetchArray()) {
-  $imgs[$img['key_id']] = 
-}
-*/
+$res_messages = query_messages($db_msgstore, $jid_chatgroup);
 
-$res = $db->query('
-  SELECT * FROM "main"."messages" 
-  WHERE "key_remote_jid" = \''.$id.'\'
-  ORDER BY "received_timestamp" ASC
-');
-while ($msg = $res->fetchArray()) {
+while ($msg = $res_messages->fetchArray()) {
   if (empty($msg['data']) 
     && (empty($msg['media_size'])
       || $msg['media_size'] < 100)
@@ -76,8 +62,8 @@ while ($msg = $res->fetchArray()) {
 
   //fwrite($f, '<xmp>'.var_export($msg, 1).'</xmp>');
 }
-$res->finalize();
-$db->close();
+$res_messages->finalize();
+$db_messages->close();
 
 fwrite($f, '
 </body>

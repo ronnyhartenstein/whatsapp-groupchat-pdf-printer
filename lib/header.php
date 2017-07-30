@@ -1,0 +1,20 @@
+<?php
+
+fwrite_header($f) {
+  
+  fwrite($f, "
+<html>
+<head>
+<title>Timon's Blog</title>
+<!-- generiert ".date('d.m.Y H:i:s')." //-->
+<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />
+<link href=\"/assets/bootstrap.min.css\" rel=\"stylesheet\">
+<link href=\"/assets/styles.css\" rel=\"stylesheet\">
+</head>
+
+<body>
+<div class=\"container\">
+<h1>Timon's Blog</h1>
+");
+
+}
