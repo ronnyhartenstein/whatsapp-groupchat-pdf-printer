@@ -43,6 +43,7 @@ class messages {
       fwrite($f, '
 <div class="text-center">
   <div class="day">'.date('d.m.Y', $ts).'</div>
+  <div class="age">'.self::timon_alter($ts).'</div>
 </div>
 <div class="clearfix"></div>');
     }
@@ -141,5 +142,12 @@ class messages {
       trim($text)
     );
     return empty($text) && $emoji >= 1 && $emoji <= 2;
+  }
+
+  static function timon_alter($ts) {
+    $birth = new timonalter('September 20, 2016 3:40:00 PM');
+    $current = new timonalter();
+    $current->setTimestamp($ts);
+    return $current->getRelativeDate($birth);
   }
 }
