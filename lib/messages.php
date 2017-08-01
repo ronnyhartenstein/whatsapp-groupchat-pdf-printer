@@ -24,6 +24,7 @@ class messages {
     $ts = intval($msg['received_timestamp'] / 1000);
     $data = $msg['data'];
 
+    /* neuer Tag */
     if (self::$last_day != date('d.m.Y', $ts)) {
       fwrite($f, '
 <div class="text-center">
@@ -31,12 +32,13 @@ class messages {
 </div>
 <div class="clearfix"></div>');
     }
-    fwrite($f, '
-<div class="message pull-left'.($msg['remote_resource'] != self::$last_jid ? ' new' : '').'">');
 
-    /* Sender */
     $jid_remote = $msg['key_from_me'] ? 'me' : $msg['remote_resource'];
 
+    fwrite($f, '
+<div class="message pull-left'.($jid_remote != self::$last_jid ? ' new' : '').'">');
+
+    /* Sender */
     if ($jid_remote != self::$last_jid) {
       if (!empty($group_participants[$jid_remote])) {
         $p = $group_participants[$jid_remote];

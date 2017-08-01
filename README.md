@@ -89,14 +89,26 @@ Operation complete
 Please press Enter to quit...
 ```
 
-## msgstore.db herunterladen
+## msgstore.db und wa.db einbinden
 
-- Source-Dir anlegen und befüllen .. 
+Source-Dir anlegen und befüllen .. 
+
 ```
 mkdir source
 cd source
-adb pull /sdcard/WhatsApp/Databases/msgstore.db
+cp WhatsApp-Key-DB-Extractor-master/extracted/msgstore.db .
+cp WhatsApp-Key-DB-Extractor-master/extracted/wa.db .
 ```
+
+Wenn OmniCrypt auf dem Handy läuft werden zyklisch die WA-DBs decrypted. 
+Die können dann per adb heruntergeladen werden.
+
+```
+cd source
+adb pull /sdcard/WhatsApp/Databases/msgstore.db
+adb pull /sdcard/WhatsApp/Databases/wa.db
+```
+
 
 ## Medien herunterladen
 
