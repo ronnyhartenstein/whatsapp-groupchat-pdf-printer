@@ -20,9 +20,6 @@ class messages {
   static $last_day = '';
   static $emoji = null;
 
-  public static $missing_imgs = [];
-  public static $missing_vids = [];
-
   public function __construct() {
     if (is_null(self::$emoji)) {
       self::$emoji = new Emojione\Client();
@@ -75,52 +72,9 @@ class messages {
       }
     }
 
-    /* Bild */
-    if ($msg['media_mime_type'] == 'image/jpeg' || preg_match('/\.jpg$/', $msg['media_name'])) {
-      print "*";
-      if (preg_match('#(Media/WhatsApp Images/.+?\.jpg)#m', $msg[15], $m)) {
-        //print "\n".$m[1];
-        $pic = $m[1];
-        if (!file_exists('html/'.$pic)) {
-          print 'x';
-          self::$missing_imgs[] = getcwd().'/html/'.$pic;
-          fwrite($f, '
-  <div class="image_broken">[Bild fehlt: '.$pic.']</div>');
-        } else {
-          fwrite($f, '
-  <div class="bild thumbnail">
-    <img src="/'.$pic.'" alt="'.($msg['media_caption'] ?: '').'">
-  </div>');
-        }
-        if (!empty($msg['media_caption'])) {
-          fwrite($f, $msg['media_caption']);
-        }
-      }
-    }
+    bild::fwrite($f, $msg);
+    video::fwrite($f, $msg);
 
-    /* Video */
-    if ($msg['media_mime_type'] == 'video/mp4') {
-      if (preg_match('#(Media/WhatsApp Video/.+?\.(mp4|3gp))#m', $msg[15], $m)) {
-        //print "\n".$m[1];
-        $pic = $m[1];
-        if (!file_exists('html/' . $pic)) {
-          print 'x';
-          self::$missing_vids[] = getcwd() . '/html/' . $pic;
-          fwrite($f, '
-  <div class="yt_broken">[Video fehlt: ' . $pic . ']</div>');
-        } else {
-          // raw_data hat ein Thumbnail!
-          fwrite($f, '
-  <div class="video thumbnail">
-    <video controls src="/' . $pic . '" alt="' . ($msg['media_caption'] ?: '') . '">
-  </div>');
-        }
-        if (!empty($msg['media_caption'])) {
-          fwrite($f, $msg['media_caption']);
-        }
-      }
-
-    }
     fwrite($f, '<span class="time">'.date('H:i', $ts).'</span>');
 
     fwrite($f, '
