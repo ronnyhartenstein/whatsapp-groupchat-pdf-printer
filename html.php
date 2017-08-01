@@ -1,6 +1,5 @@
 <?php
-set_include_path(get_include_path().PATH_SEPARATOR.'lib');
-spl_autoload_register();
+include 'vendor/autoload.php';
 
 $f = fopen('html/index.html','w');
 
@@ -18,6 +17,7 @@ participants::fwrite_list($f, $group_participants);
 $res_messages = messages::query($db_msgstore, $jid_chatgroup);
 messages::dbg_on();
 $last_jid = '';
+$msg_proc = new messages();
 while ($msg = $res_messages->fetchArray()) {
   if (empty($msg['data']) 
     && (empty($msg['media_size'])
@@ -31,7 +31,7 @@ while ($msg = $res_messages->fetchArray()) {
     print "*";
   }
 
-  messages::fwrite_render($f, $msg, $contacts, $group_participants);
+  $msg_proc->fwrite_render($f, $msg, $contacts, $group_participants);
 }
 $res_messages->finalize();
 $db_msgstore->close();

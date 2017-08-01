@@ -18,8 +18,19 @@ class messages {
 
   static $last_jid = '';
   static $last_day = '';
+  static $emoji = null;
 
-  static function fwrite_render($f, $msg, &$contacts, &$group_participants) {
+  public function __construct() {
+    if (is_null(self::$emoji)) {
+      self::$emoji = new Emojione\Client();
+      self::$emoji->shortcodes = false;
+      //self::$emoji->spriteSize = '64';
+      self::$emoji->unicodeAlt = false;
+      self::$emoji->imagePathPNG = 'http://localhost:4000/assets/emojione/';
+    }
+  }
+
+  public function fwrite_render($f, $msg, &$contacts, &$group_participants) {
     if (self::$dbg) fwrite(self::$dbg, "\n".str_repeat('-',80)."\n".var_export($msg, 1));
     $ts = intval($msg['received_timestamp'] / 1000);
     $data = $msg['data'];
@@ -37,6 +48,7 @@ class messages {
 
     fwrite($f, '
 <div class="message pull-left'.($jid_remote != self::$last_jid ? ' new' : '').'">');
+    fwrite($f, '<div class="id">_id:'.$msg['_id'].'</div>');
 
     /* Sender */
     if ($jid_remote != self::$last_jid) {
@@ -51,10 +63,11 @@ class messages {
 
     /* Text */
     if (!empty($data) && !is_numeric($data)) {
-      if (strlen($data) == 4 || strlen($data) == 8) { // Emoji
+      $text = self::$emoji->toImage($data);
+      if (self::only_emoji($text)) {
         fwrite($f, '<span class="big">'.$data.'</span>');
       } else {
-        fwrite($f, $data);
+        fwrite($f, $text);
       }
     }
 
@@ -80,5 +93,18 @@ class messages {
   
     self::$last_jid = $jid_remote;
     self::$last_day = date('d.m.Y', $ts);
+  }
+
+  static function only_emoji($text) {
+    $emoji = 0;
+    $text = preg_replace_callback(
+      '/<img class="emojione".*?>/', 
+      function($n) use (&$emoji) {
+        $emoji++; 
+        return ''; 
+      }, 
+      trim($text)
+    );
+    return empty($text) && $emoji >= 1 && $emoji <= 2;
   }
 }

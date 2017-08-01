@@ -1,0 +1,21 @@
+{
+    "name": "ronnyhartenstein/whatsapp2pdf",
+    "description": "WhatsApp Chat 2 PDF Converter",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ronny Hartenstein",
+            "email": "ronny@rh-flow.de"
+        }
+    ],
+    "require": {
+        "emojione/emojione": "2.2.7",
+        "jasonlewis/expressive-date": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "lib/"
+        }
+    }
+}
