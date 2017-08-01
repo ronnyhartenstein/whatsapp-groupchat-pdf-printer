@@ -24,14 +24,6 @@ th, td {
     padding: 5px;
 }
 
-.smiley {
-    height: 1em; 
-    max-height: 1em;
-    display: inline-block;
-    margin-top: -5px;
-}
-
-
 .day {
     background-color: #bee6f3;
     border-radius: 3px;
@@ -108,7 +100,8 @@ img.emojione {
     margin-bottom: 5px;
     border: none;
 }
-.bild img {
+.bild img,
+.video video {
     max-height: 400px;
 }
 

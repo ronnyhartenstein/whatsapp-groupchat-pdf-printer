@@ -6,7 +6,8 @@ TODO:
 - [x] Whatsapp Design
 - [x] Emoji durch Bilder ersetzen
 - [x] fehlende Bilder rot ausgeben ("Bild fehlt [Name]") + Liste nach Abschluss
-- [ ] Videos als Thumbnails einbinden + berechnen bei Bedarf
+- [x] Videos einbinden, Thumbnails kommen über Browser selbst
+- [ ] bei Tagen Timons Alter mit berechnen
 
 ## msgstore.db.crypt12 dekrypten
 

@@ -43,4 +43,8 @@ fclose($f);
 if (!empty(messages::$missing_imgs)) {
   print "\nBilder fehlen:\n\t" . implode("\n\t", messages::$missing_imgs);
 }
+if (!empty(messages::$missing_vids)) {
+  print "\nVideos fehlen:\n\t" . implode("\n\t", messages::$missing_vids);
+}
+
 print "\nDone.";
