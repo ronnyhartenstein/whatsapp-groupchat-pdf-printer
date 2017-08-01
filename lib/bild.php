@@ -17,11 +17,11 @@ class bild {
         } else {
           fwrite($f, '
   <div class="bild thumbnail">
-    <img src="/'.$pic.'" alt="'.($msg['media_caption'] ?: '').'">
+    <img src="/'.$pic.'">
   </div>');
         }
         if (!empty($msg['media_caption'])) {
-          fwrite($f, $msg['media_caption']);
+          fwrite($f, messages::$emoji->toImage($msg['media_caption']));
         }
       }
     }

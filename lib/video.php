@@ -18,11 +18,11 @@ class video {
           fwrite($f, '
   <div class="video thumbnail">
     <div class="play_icon"><div class="play"></div></div>
-    <video controls src="/' . $pic . '" alt="' . ($msg['media_caption'] ?: '') . '">
+    <video controls src="/' . $pic . '" preload="none">
   </div>');
         }
         if (!empty($msg['media_caption'])) {
-          fwrite($f, $msg['media_caption']);
+          fwrite($f, messages::$emoji->toImage($msg['media_caption']));
         }
       }
 

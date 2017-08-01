@@ -61,18 +61,18 @@ img.emojione {
     margin-top: 0;
 }
 
-.image_broken {
+.image_broken, .yt_broken {
     color: darkred; 
 }
 /*
-.yt_platzhalter { 
+.yt_platzhalter {
     color: darkblue; 
 }
 .yt_platzhalter img, .yt_broken img {
     height: 30px;
     margin-top: -9px;
     display: inline-block;
-} 
+}
 */
 
 .message p {

@@ -9,6 +9,7 @@ TODO:
 - [x] Videos einbinden, Thumbnails kommen über Browser selbst
 - [x] bei Tagen Timons Alter mit berechnen
 - [ ] Video-Thumbnails (läd schneller)
+- [ ] Text bricht in PDF um wg. Zeit - muss in <p> vom Text mit rein - aber Bild/Video beachten
 
 ## msgstore.db.crypt12 dekrypten
 

@@ -18,7 +18,7 @@ class messages {
 
   static $last_jid = '';
   static $last_day = '';
-  static $emoji = null;
+  public static $emoji = null;
 
   public function __construct() {
     if (is_null(self::$emoji)) {
@@ -48,8 +48,7 @@ class messages {
     $jid_remote = $msg['key_from_me'] ? 'me' : $msg['remote_resource'];
 
     fwrite($f, '
-<div class="message pull-left'.($jid_remote != self::$last_jid ? ' new' : '').'">');
-    //fwrite($f, '<div class="id">_id:'.$msg['_id'].'</div>');
+<div class="message pull-left'.($jid_remote != self::$last_jid ? ' new' : '').'" data-id="'.$msg['_id'].'"">');
 
     /* Sender */
     if ($jid_remote != self::$last_jid) {
