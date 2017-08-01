@@ -20,6 +20,8 @@ class messages {
   static $last_day = '';
   static $emoji = null;
 
+  public static $missing_imgs = [];
+
   public function __construct() {
     if (is_null(self::$emoji)) {
       self::$emoji = new Emojione\Client();
@@ -76,10 +78,18 @@ class messages {
       print "*";
       if (preg_match('#(Media/WhatsApp Images/.+?\.jpg)#m', $msg[15], $m)) {
         //print "\n".$m[1];
-        fwrite($f, '
+        $pic = $m[1];
+        if (!file_exists('html/'.$pic)) {
+          print 'x';
+          self::$missing_imgs[] = getcwd().'/html/'.$pic;
+          fwrite($f, '
+  <div class="image_broken">[Bild fehlt: '.$pic.']</div>');
+        } else {
+          fwrite($f, '
   <div class="bild thumbnail">
-    <img src="/'.$m[1].'" alt="'.($msg['media_caption'] ?: '').'">
+    <img src="/'.$pic.'" alt="'.($msg['media_caption'] ?: '').'">
   </div>');
+        }
         if (!empty($msg['media_caption'])) {
           fwrite($f, $msg['media_caption']);
         }

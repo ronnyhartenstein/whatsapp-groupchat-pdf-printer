@@ -4,8 +4,8 @@
 TODO:
 - [x] Empfänger/Sender auflösen
 - [x] Whatsapp Design
-- [ ] Emoji durch Bilder ersetzen
-- [ ] fehlende Bilder rot ausgeben ("Bild fehlt [Name]") + Liste nach Abschluss
+- [x] Emoji durch Bilder ersetzen
+- [x] fehlende Bilder rot ausgeben ("Bild fehlt [Name]") + Liste nach Abschluss
 - [ ] Videos als Thumbnails einbinden + berechnen bei Bedarf
 
 ## msgstore.db.crypt12 dekrypten

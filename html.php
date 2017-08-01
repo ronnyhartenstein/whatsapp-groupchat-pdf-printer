@@ -39,4 +39,8 @@ $db_msgstore->close();
 header_footer::fwrite_footer($f);
 
 fclose($f);
+
+if (!empty(messages::$missing_imgs)) {
+  print "\nBilder fehlen:\n\t" . implode("\n\t", messages::$missing_imgs);
+}
 print "\nDone.";
