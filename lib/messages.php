@@ -66,7 +66,7 @@ class messages {
     if (!empty($data) && !is_numeric($data)) {
       $text = self::$emoji->toImage($data);
       if (self::only_emoji($text)) {
-        fwrite($f, '<span class="big">'.$data.'</span>');
+        fwrite($f, '<span class="big">'.$text.'</span>');
       } else {
         fwrite($f, $text);
       }

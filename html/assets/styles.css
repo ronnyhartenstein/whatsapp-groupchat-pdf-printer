@@ -57,6 +57,9 @@ img.emojione {
     display: inline-block;
     margin-top: -5px;
 }
+.big img.emojione {
+    margin-top: 0;
+}
 
 .image_broken {
     color: darkred; 

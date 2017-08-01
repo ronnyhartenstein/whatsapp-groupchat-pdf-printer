@@ -7,7 +7,8 @@ TODO:
 - [x] Emoji durch Bilder ersetzen
 - [x] fehlende Bilder rot ausgeben ("Bild fehlt [Name]") + Liste nach Abschluss
 - [x] Videos einbinden, Thumbnails kommen über Browser selbst
-- [ ] bei Tagen Timons Alter mit berechnen
+- [x] bei Tagen Timons Alter mit berechnen
+- [ ] Video-Thumbnails (läd schneller)
 
 ## msgstore.db.crypt12 dekrypten
 
