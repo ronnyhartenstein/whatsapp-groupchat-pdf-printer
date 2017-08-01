@@ -17,6 +17,7 @@ class video {
           // raw_data hat ein Thumbnail!
           fwrite($f, '
   <div class="video thumbnail">
+    <div class="play_icon"><div class="play"></div></div>
     <video controls src="/' . $pic . '" alt="' . ($msg['media_caption'] ?: '') . '">
   </div>');
         }
