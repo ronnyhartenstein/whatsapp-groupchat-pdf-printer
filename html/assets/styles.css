@@ -112,8 +112,17 @@ img.emojione {
     border: none;
 }
 .bild img,
-.video video {
+.video video,
+.video img {
     max-height: 400px;
+}
+.video-filename {
+    color: gray !important;
+    font-size: 0.7em;
+    display: inline-block;
+    float: right;
+    margin-left: 1em;
+    margin-top: 0.4em;
 }
 
 .message .time {

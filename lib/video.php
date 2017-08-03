@@ -11,25 +11,40 @@ class video {
     if (self::hasMedia($msg)) {
       if (preg_match('#(Media/WhatsApp Video/.+?\.(mp4|3gp))#m', $msg[15], $m)) {
         //print "\n".$m[1];
-        $pic = $m[1];
-        if (!file_exists('html/' . $pic)) {
+        $vid = $m[1];
+        if (!file_exists('html/' . $vid)) {
           print 'x';
-          self::$missing[] = getcwd() . '/html/' . $pic;
+          self::$missing[] = getcwd() . '/html/' . $vid;
           fwrite($f, '
-  <div class="yt_broken">[Video fehlt: ' . $pic . ']</div>');
+  <div class="yt_broken">[Video fehlt: ' . $vid . ']</div>');
         } else {
-          // raw_data hat ein Thumbnail!
+          $pic = self::thumbnail($vid);
           fwrite($f, '
   <div class="video thumbnail">
     <div class="play_icon"><div class="play"></div></div>
-    <video controls src="/' . $pic . '" preload="none">
-  </div>');
+    '/*<video controls src="/' . $pic . '" preload="none">*/.'
+    <img src="/'.$pic.'">
+  </div>
+  <span class="video-filename">'.basename($vid).'</span>');
         }
         if (!empty($msg['media_caption'])) {
           fwrite($f, messages::$emoji->toImage($msg['media_caption']));
         }
       }
-
     }
+  }
+
+  static function thumbnail($vid) {
+    $pic = preg_replace('/\.(mp4|3gp)$/', '.png', $vid);
+    if (!file_exists('html/'.$pic)) {
+      print 'v';
+      $cmd = 'convert '.escapeshellarg('html/'.$vid).'[1] '.escapeshellarg('html/'.$pic);
+      exec($cmd);
+      if (!file_exists('html/'.$pic)) {
+        print "\n".'Fehler: Video Thumbail "'.$pic.'" konnte aus "'.$vid.'" nicht erstellt werden.'."\n";
+        die();
+      }
+    }
+    return $pic;
   }
 }
