@@ -17,8 +17,10 @@ $group_participants = participants::get($db_msgstore, $jid_chatgroup, $contacts)
 $res_messages = messages::query($db_msgstore, $jid_chatgroup);
 messages::dbg_on();
 $last_jid = '';
+$skip_ids = [45953, 45955];
 $msg_proc = new messages();
 while ($msg = $res_messages->fetchArray()) {
+  if (in_array($msg['_id'], $skip_ids)) continue;
   if (empty($msg['data']) 
     && (empty($msg['media_size'])
       || $msg['media_size'] < 100)
