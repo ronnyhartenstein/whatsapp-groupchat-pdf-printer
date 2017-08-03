@@ -8,8 +8,17 @@ TODO:
 - [x] fehlende Bilder rot ausgeben ("Bild fehlt [Name]") + Liste nach Abschluss
 - [x] Videos einbinden, Thumbnails kommen über Browser selbst
 - [x] bei Tagen Timons Alter mit berechnen
-- [ ] Video-Thumbnails (läd schneller)
-- [ ] Text bricht in PDF um wg. Zeit - muss in <p> vom Text mit rein - aber Bild/Video beachten
+- [x] Video-Thumbnails (läd schneller)
+- [x] Text bricht in PDF um bei Zeit - via Chrome Headless rendern
+
+## Herausforderungen
+- WhatsApp DBs vom nicht-gerooteten Smartphone herunterbekommen und decrypten
+- WhatsApp Design nachbauen, jeder Teilnehmer hat eine Farbe
+- Emojis drucken -> als EmojiOne Grafik eingebunden 
+  - wkhtmltopdf druckt 2x Platzhalter statt Emoji, hat aber einen encodings-Schalter, nicht geprüft
+  - Chrome Headless lässt die Emoji aus, einfach Whitespace
+- aus Videos Thumbnail erstellen und mit Play-Button (Single-Div) einbinden
+- Timons Alter bzgl. aktuellen Tag relativ berechnen und in Tages-Headline ausgeben
 
 ## msgstore.db.crypt12 dekrypten
 
