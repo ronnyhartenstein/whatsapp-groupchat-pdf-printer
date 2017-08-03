@@ -12,7 +12,7 @@ $db_wa->close();
 $db_msgstore = new SQLite3('source/msgstore.db');
 $jid_chatgroup = chat_group::get_jid_of_group_by_subject($db_msgstore, 'Timons Blog');
 $group_participants = participants::get($db_msgstore, $jid_chatgroup, $contacts);
-participants::fwrite_list($f, $group_participants);
+//participants::fwrite_list($f, $group_participants);
 
 $res_messages = messages::query($db_msgstore, $jid_chatgroup);
 messages::dbg_on();
