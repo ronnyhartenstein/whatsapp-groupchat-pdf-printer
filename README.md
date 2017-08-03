@@ -10,6 +10,8 @@ TODO:
 - [x] bei Tagen Timons Alter mit berechnen
 - [x] Video-Thumbnails (läd schneller)
 - [x] Text bricht in PDF um bei Zeit - via Chrome Headless rendern
+- [ ] Script um *.db zu adb pullen
+- [ ] Script für rsync von Media
 
 ## Herausforderungen
 - WhatsApp DBs vom nicht-gerooteten Smartphone herunterbekommen und decrypten
