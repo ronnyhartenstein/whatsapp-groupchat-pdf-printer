@@ -10,6 +10,7 @@ class header_footer {
 <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />
 <link href=\"/assets/bootstrap.min.css\" rel=\"stylesheet\">
 <link href=\"/assets/styles.css\" rel=\"stylesheet\">
+<link href=\"/assets/print.css\" rel=\"stylesheet\" media=\"print\">
 </head>
 
 <body>

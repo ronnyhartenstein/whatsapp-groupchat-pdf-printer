@@ -3,8 +3,12 @@
 class video {
   static $missing = [];
 
+  static function hasMedia(&$msg) {
+    return $msg['media_mime_type'] == 'video/mp4';
+  }
+
   static function fwrite($f, &$msg) {
-    if ($msg['media_mime_type'] == 'video/mp4') {
+    if (self::hasMedia($msg)) {
       if (preg_match('#(Media/WhatsApp Video/.+?\.(mp4|3gp))#m', $msg[15], $m)) {
         //print "\n".$m[1];
         $pic = $m[1];

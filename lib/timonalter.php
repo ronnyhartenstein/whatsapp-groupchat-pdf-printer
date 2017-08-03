@@ -1,5 +1,7 @@
 <?php
 
+// Kudos to https://packagist.org/packages/jasonlewis/expressive-date
+
 class timonalter extends ExpressiveDate {
 
 

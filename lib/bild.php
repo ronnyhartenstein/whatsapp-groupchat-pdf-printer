@@ -3,8 +3,12 @@
 class bild {
   static $missing = [];
 
+  static function hasMedia(&$msg) {
+    return $msg['media_mime_type'] == 'image/jpeg' || preg_match('/\.jpg$/', $msg['media_name']);
+  }
+
   static function fwrite($f, &$msg) {
-    if ($msg['media_mime_type'] == 'image/jpeg' || preg_match('/\.jpg$/', $msg['media_name'])) {
+    if (self::hasMedia($msg)) {
       print "*";
       if (preg_match('#(Media/WhatsApp Images/.+?\.jpg)#m', $msg[15], $m)) {
         //print "\n".$m[1];

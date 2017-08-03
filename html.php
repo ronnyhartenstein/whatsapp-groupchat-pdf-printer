@@ -47,4 +47,4 @@ if (!empty(video::$missing)) {
   print "\nVideos fehlen:\n\t" . implode("\n\t", video::$missing);
 }
 
-print "\nDone.";
+print "\nDone.\n";

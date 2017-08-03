@@ -9,46 +9,25 @@ if [[ $? -ne 0 ]]; then
   exit
 fi
 
-echo "--------------\ngeneriere HTML .."
+echo "--------------"
+echo "generiere HTML .."
 php html.php
 
-echo "--------------\ngeneriere PDFs .."
-cd html
-for html in *.html; do
-  if [[ "$html" == "print.html" || "$html" == "footer.html" ]]; then
-    continue
-  fi
-  pdf=../pdf/$(basename "$html" .html).pdf
-  echo "--> " $html $pdf
-  # https://wkhtmltopdf.org/usage/wkhtmltopdf.txt
-  wkhtmltopdf \
-    --disable-plugins \
-    --disable-javascript \
-    --disable-forms \
-    --lowquality \
-    --no-print-media-type \
-    --images \
-    --image-dpi 300 \
-    --image-quality 85 \
-    --outline \
-    --page-size A4 \
-    --footer-html footer.html \
-    --footer-spacing 5 \
-    --viewport-size 800 \
-    --load-error-handling ignore \
-    --margin-bottom 15 \
-    http://$SERVER/$html $pdf
-done
+echo "--------------"
+echo "generiere PDF .."
+cd pdf
+# https://developers.google.com/web/updates/2017/04/headless-chrome
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --headless --disable-gpu --print-to-pdf http://$SERVER/
 
+echo "--------------"
+echo "fuege Binderand in PDF hinzu .."
 
 # pdfjam installieren:
 # 1. brew cask install basictex
 # 2. sudo tlmgr install pdfjam
 # 3. in .zshrc PATH="..:/Library/TeX/Distributions/Programs/texbin"
 
-cd ../pdf
-echo "fuege Binderand hinzu .."
 # pdfjam: http://www2.warwick.ac.uk/fac/sci/statistics/staff/academic-research/firth/software/pdfjam/#using
-pdfjam --twoside index.pdf --offset '0.8cm 0cm' --suffix 'offset'
+pdfjam --twoside output.pdf --offset '0.8cm 0cm' --suffix 'offset'
 
 echo "Done."

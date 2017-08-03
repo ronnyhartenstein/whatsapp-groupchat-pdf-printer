@@ -1,0 +1,8 @@
+a:link:after,
+a:visited:after {
+    content: "" !important;
+}
+a { color: darkblue; }
+small, .gray { color: gray !important; }
+.image_broken, .yt_broken { color: darkred; }
+.yt_platzhalter { color: darkblue; }

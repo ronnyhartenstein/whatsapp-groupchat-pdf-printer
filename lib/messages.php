@@ -48,33 +48,40 @@ class messages {
     $jid_remote = $msg['key_from_me'] ? 'me' : $msg['remote_resource'];
 
     fwrite($f, '
-<div class="message pull-left'.($jid_remote != self::$last_jid ? ' new' : '').'" data-id="'.$msg['_id'].'"">');
+<div class="message'.($jid_remote != self::$last_jid ? ' new' : '').'" data-id="'.$msg['_id'].'">');
 
     /* Sender */
     if ($jid_remote != self::$last_jid) {
       if (!empty($group_participants[$jid_remote])) {
         $p = $group_participants[$jid_remote];
-        fwrite($f, '<div class="name" style="color: '.$p['color'].';">'.$p['name'].'</div>');
+        fwrite($f, '<div class="name" style="color: '.$p['color'].' !important;">'.$p['name'].'</div>');
       } else {
         $p = $contacts[$jid_remote];
         fwrite($f, '<div class="name">'.$p.'</div>');
       }
     }
 
+    $hasMedia = bild::hasMedia($msg) || video::hasMedia($msg);
+
     /* Text */
     if (!empty($data) && !is_numeric($data)) {
       $text = self::$emoji->toImage($data);
-      if (self::only_emoji($text)) {
-        fwrite($f, '<span class="big">'.$text.'</span>');
+      if ($emoij = self::only_emoji($text)) {
+        fwrite($f, '<span class="only-emoji'.($emoij <= 2 ? ' big' : '').'">'.$text.'</span>');
       } else {
         fwrite($f, $text);
       }
+      if (!$hasMedia) {
+        fwrite($f, ' <span class="time">'.date('H:i', $ts).'</span>');
+      }
     }
 
-    bild::fwrite($f, $msg);
-    video::fwrite($f, $msg);
+    if ($hasMedia) {
+      bild::fwrite($f, $msg);
+      video::fwrite($f, $msg);
 
-    fwrite($f, '<span class="time">'.date('H:i', $ts).'</span>');
+      fwrite($f, ' <span class="time">' . date('H:i', $ts) . '</span>');
+    }
 
     fwrite($f, '
 </div>
@@ -94,7 +101,7 @@ class messages {
       }, 
       trim($text)
     );
-    return empty($text) && $emoji >= 1 && $emoji <= 2;
+    return empty($text) ? $emoji : false;
   }
 
   static function timon_alter($ts) {

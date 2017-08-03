@@ -1,23 +1,24 @@
 body {
-    background-color: #eee;
+    background-color: #eee !important;
 }
 
 small, .gray { 
     color: gray !important; 
 }
-h1, h2, h3, h4, h5, h6, h7, h8 {
+h1, h2, h3, h4, h5, h6 {
     font-family: Arial;
 }
-h2, h3 { 
+h2, h3 {
+    font-size: 2em;
     margin-top: 40px; 
 }
 h4, h5, h6 { 
-    font-size: 21px; 
+    font-size: 1.3em;
     margin-top: 40px; 
 }
 p, div, th, td { 
     font-family: Arial; /*Times New Roman;*/
-    font-size: 16px; 
+    font-size: 16px;
 }
 th, td {
     vertical-align: top;
@@ -25,27 +26,34 @@ th, td {
 }
 
 .day, .age {
-    background-color: #bee6f3;
-    border-radius: 3px;
-    border: 1px solid #abd2de;
     padding: 3px 8px;
-    color: #888;
+    color: #888 !important;
     display: inline-block;
     margin: 10px;
+}
+.day {
+    background-color: #bee6f3 !important;
+    border-radius: 3px;
+    border: 1px solid #abd2de;
     font-size: 0.9em;
+}
+.age {
+    font-size: 0.8em;
+    margin-left: 0;
 }
 
 .message { 
-    position: relative; 
-    background-color: white;
+    position: relative;
+    background-color: white !important;
     border-radius: 5px;
     border: 1px solid lightgray;
     margin: 1px 10px;
     padding: 5px 8px;
+    display: inline-block;
 }
 .message .id {
     font-size: 0.5em;
-    color: gray;
+    color: gray !important;
 }
 .message.new {
     margin-top: 8px;
@@ -55,14 +63,14 @@ img.emojione {
     height: 1em; 
     max-height: 1em;
     display: inline-block;
-    margin-top: -5px;
+    margin-top: -3px;
 }
-.big img.emojione {
+.only-emoji img.emojione {
     margin-top: 0;
 }
 
 .image_broken, .yt_broken {
-    color: darkred; 
+    color: darkred !important;
 }
 /*
 .yt_platzhalter {
@@ -78,7 +86,7 @@ img.emojione {
 .message p {
     margin-bottom: 0;
 }
-.message.new::before {
+/*.message.new::before {
     position: absolute;
     left: -10px;
     width: 10px;
@@ -87,7 +95,7 @@ img.emojione {
     border-color: transparent;
     border-top-color: lightgray;
     border-right-color: lightgray;
-}
+}*/
 
 .message .name {
     font-weight: bold;
@@ -109,9 +117,12 @@ img.emojione {
 }
 
 .message .time {
-    color: #bbb;
+    color: #bbb !important;
     font-size: 0.8em;
     margin-left: 1em;
+    display: block;
+    float: right;
+    margin-top: 0.3em
 }
 
 .video.thumbnail {
@@ -144,16 +155,4 @@ img.emojione {
     border-top: 1.2em solid rgba(44, 44, 44, 0);
     border-bottom: 1.2em solid transparent;
     border-left: 1.5em solid rgba(255,255,255,0.7);
-}
-
-
-@media print {
-    a:link:after,
-    a:visited:after {
-        content: "" !important;
-    }
-    a { color: darkblue; }
-    small, .gray { color: gray !important; }
-    .image_broken, .yt_broken { color: darkred; }
-    .yt_platzhalter { color: darkblue; }
 }
