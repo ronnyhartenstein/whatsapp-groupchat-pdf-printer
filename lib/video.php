@@ -41,7 +41,7 @@ class video {
       $cmd = 'convert '.escapeshellarg('html/'.$vid).'[1] '.escapeshellarg('html/'.$pic);
       exec($cmd);
       if (!file_exists('html/'.$pic)) {
-        print "\n".'Fehler: Video Thumbail "'.$pic.'" konnte aus "'.$vid.'" nicht erstellt werden.'."\n";
+        print "\nError: Could not create video thumbail '$pic' from '$vid'\n";
         //die();
       }
     }
