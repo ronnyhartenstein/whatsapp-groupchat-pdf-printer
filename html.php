@@ -1,5 +1,6 @@
 <?php
 include 'vendor/autoload.php';
+include 'config.php';
 
 $f = fopen('html/index.html','w');
 
@@ -9,18 +10,20 @@ $db_wa = new SQLite3('source/wa.db');
 $contacts = contacts::load($db_wa);
 $db_wa->close();
 
+if (empty($chat_group_subject)) {
+  die("Error: Please set a \$chat_group_subject in config.php");
+}
 $db_msgstore = new SQLite3('source/msgstore.db');
-$jid_chatgroup = chat_group::get_jid_of_group_by_subject($db_msgstore, 'Timons Blog');
+$jid_chatgroup = chat_group::get_jid_of_group_by_subject($db_msgstore, $chat_group_subject);
 $group_participants = participants::get($db_msgstore, $jid_chatgroup, $contacts);
 //participants::fwrite_list($f, $group_participants);
 
 $res_messages = messages::query($db_msgstore, $jid_chatgroup);
 messages::dbg_on();
 $last_jid = '';
-$skip_ids = [45953, 45955];
 $msg_proc = new messages();
 while ($msg = $res_messages->fetchArray()) {
-  if (in_array($msg['_id'], $skip_ids)) continue;
+  if (in_array($msg['_id'], $skip_message_ids)) continue;
   if (empty($msg['data']) 
     && (empty($msg['media_size'])
       || $msg['media_size'] < 100)
@@ -43,10 +46,10 @@ header_footer::fwrite_footer($f);
 fclose($f);
 
 if (!empty(bild::$missing)) {
-  print "\nBilder fehlen:\n\t" . implode("\n\t", bild::$missing);
+  print "\nPics missing:\n\t" . implode("\n\t", bild::$missing);
 }
 if (!empty(video::$missing)) {
-  print "\nVideos fehlen:\n\t" . implode("\n\t", video::$missing);
+  print "\nMovies missing:\n\t" . implode("\n\t", video::$missing);
 }
 file_put_contents('missing_media.json', json_encode(array_merge(bild::$missing, video::$missing)));
 

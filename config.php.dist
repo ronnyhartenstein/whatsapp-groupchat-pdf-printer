@@ -1,0 +1,8 @@
+<?php
+
+// title of chat group to make a PDF of
+$chat_group_subject = '';
+
+// message-ids to skip (e.g. chat group title)
+$skip_message_ids = [];
+
