@@ -140,6 +140,7 @@ Oder per Update-Script - nach ersten Lauf von `html.php` - wobei die noch fehlen
 php update_source.php
 ```
 
+Theoretisch könnte man `rsync` nutzen und alle Medien heruntersyncen - http://ptspts.blogspot.de/2015/03/how-to-use-rsync-over-adb-on-android.html
 
 ## HTML bauen & anschauen
 
