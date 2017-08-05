@@ -48,5 +48,6 @@ if (!empty(bild::$missing)) {
 if (!empty(video::$missing)) {
   print "\nVideos fehlen:\n\t" . implode("\n\t", video::$missing);
 }
+file_put_contents('missing_media.json', json_encode(array_merge(bild::$missing, video::$missing)));
 
 print "\nDone.\n";

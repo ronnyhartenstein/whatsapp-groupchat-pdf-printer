@@ -15,7 +15,7 @@ class bild {
         $pic = $m[1];
         if (!file_exists('html/'.$pic)) {
           print 'x';
-          self::$missing[] = getcwd().'/html/'.$pic;
+          self::$missing[] = $pic;
           fwrite($f, '
   <div class="image_broken">[Bild fehlt: '.$pic.']</div>');
         } else {

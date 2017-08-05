@@ -14,7 +14,7 @@ class video {
         $vid = $m[1];
         if (!file_exists('html/' . $vid)) {
           print 'x';
-          self::$missing[] = getcwd() . '/html/' . $vid;
+          self::$missing[] = $vid;
           fwrite($f, '
   <div class="yt_broken">[Video fehlt: ' . $vid . ']</div>');
         } else {
@@ -42,7 +42,7 @@ class video {
       exec($cmd);
       if (!file_exists('html/'.$pic)) {
         print "\n".'Fehler: Video Thumbail "'.$pic.'" konnte aus "'.$vid.'" nicht erstellt werden.'."\n";
-        die();
+        //die();
       }
     }
     return $pic;

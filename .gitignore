@@ -4,3 +4,4 @@ pdf
 /vendor/
 .idea
 missing_media.json
+config.php
