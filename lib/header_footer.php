@@ -6,7 +6,7 @@ class header_footer {
 <html>
 <head>
 <title>Timon's Blog</title>
-<!-- generiert ".date('d.m.Y H:i:s')." //-->
+<!-- generiert ".date('d.m.Y')." //-->
 <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />
 <link href=\"/assets/bootstrap.min.css\" rel=\"stylesheet\">
 <link href=\"/assets/styles.css\" rel=\"stylesheet\">
