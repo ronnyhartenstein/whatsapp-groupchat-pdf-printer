@@ -10,9 +10,9 @@ TODO:
 - [x] bei Tagen Timons Alter mit berechnen
 - [x] Video-Thumbnails (läd schneller)
 - [x] Text bricht in PDF um bei Zeit - via Chrome Headless rendern
-- [ ] Script um *.db zu adb pullen
-- [ ] fehlende Medien in JSON schreiben (jedes Mal neu)
-- [ ] Script für adb pull von fehlender Media von Smartphone
+- [x] Script um *.db zu adb pullen
+- [x] fehlende Medien in JSON schreiben (jedes Mal neu)
+- [x] Script für adb pull von fehlender Media von Smartphone
 
 ## Herausforderungen
 - WhatsApp DBs vom nicht-gerooteten Smartphone herunterbekommen und decrypten
@@ -124,10 +124,22 @@ adb pull /sdcard/WhatsApp/Databases/msgstore.db
 adb pull /sdcard/WhatsApp/Databases/wa.db
 ```
 
+Oder per Update-Script
+
+```
+php update_source.php
+```
 
 ## Medien herunterladen
 
 - `/sdcard/WhatsApp/Media` nach `source/Media` kopieren
+
+Oder per Update-Script - nach ersten Lauf von `html.php` - wobei die noch fehlenden Medien in `missing_media.json` gelistet werden. 
+
+```
+php update_source.php
+```
+
 
 ## HTML bauen & anschauen
 
@@ -137,5 +149,6 @@ adb pull /sdcard/WhatsApp/Databases/wa.db
 
 ## PDF bauen
 
+- nutzt Chrome Headless, benötigt Chrome ab Version 58
 - `./build.sh`
-- `pdf/index-offset.pdf` öffnen
+- `pdf/output-offset.pdf` öffnen
