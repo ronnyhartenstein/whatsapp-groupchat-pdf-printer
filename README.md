@@ -11,7 +11,8 @@ TODO:
 - [x] Video-Thumbnails (läd schneller)
 - [x] Text bricht in PDF um bei Zeit - via Chrome Headless rendern
 - [ ] Script um *.db zu adb pullen
-- [ ] Script für rsync von Media
+- [ ] fehlende Medien in JSON schreiben (jedes Mal neu)
+- [ ] Script für adb pull von fehlender Media von Smartphone
 
 ## Herausforderungen
 - WhatsApp DBs vom nicht-gerooteten Smartphone herunterbekommen und decrypten

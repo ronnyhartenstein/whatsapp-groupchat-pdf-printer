@@ -3,3 +3,4 @@ pdf
 *.log
 /vendor/
 .idea
+missing_media.json
