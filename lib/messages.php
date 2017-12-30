@@ -37,13 +37,24 @@ class messages {
 
     /* neuer Tag */
     if (self::$last_day != date('d.m.Y', $ts)) {
+      /* Geburtstag? */
+      if (date('d.m.Y', $ts) == '20.09.2017') {
+        fwrite($f, '
+<div class="text-center">
+  <div class="birthday">'.self::$emoji->toImage('🎉 🎊 1. Geburtstag! 🎁 💝').'</div>
+</div>
+<div class="clearfix"></div>');
+      }
       fwrite($f, '
 <div class="text-center">
   <div class="day">'.date('d.m.Y', $ts).'</div>
   <div class="age">'.self::timon_alter($ts).'</div>
 </div>
 <div class="clearfix"></div>');
+
     }
+
+    
 
     $jid_remote = $msg['key_from_me'] ? 'me' : $msg['remote_resource'];
 

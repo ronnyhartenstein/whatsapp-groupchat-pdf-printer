@@ -53,15 +53,25 @@ class timonalter extends ExpressiveDate {
     // nach Geburt die Wochen zusätzlich ab 5 Wochen
     $additional = '';
     if ($nach_geburt) {
-      $week_min = 5 * 7*24*60*60;
-      $week_max = 53 * 7*24*60*60;
-      $week_diff = abs($compare->getTimestamp() - $this->getTimestamp());
-      if ($week_diff >= $week_min && $week_diff <= $week_max) {
-        $weeks = round($week_diff / (7*24*60*60));
-        $additional = ' / '.$weeks.' '.$units_pl[4];
-      }
+      $TAG = 24*60*60;
+      $WOCHE = 7 * $TAG;
+      $week_min = 5 * $WOCHE;
+      $week_max = (53 * $WOCHE);
+      $time_diff = abs($compare->getTimestamp() - $this->getTimestamp());
+      if ($time_diff >= $week_min) {
+        if ($time_diff <= $week_max) {
+          $weeks = round($time_diff / (7*24*60*60));
+          $additional = ' / '.$weeks.' '.$units_pl[4];
+        } else {
+          $from = new DateTime(); $from->setTimestamp($compare->getTimestamp());
+          $to = new DateTime(); $to->setTimestamp($this->getTimestamp());
+          $interval = $from->diff($to);
+          $months = intval($interval->format('%m'));
+          $additional = ' / '.($months + 12).' '.$units_pl[5];
+        }
+      } 
     }
-
+    
     return $difference.' '.$unit.$additional.$suffix;
   }
 

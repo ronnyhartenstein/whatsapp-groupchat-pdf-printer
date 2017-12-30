@@ -2,6 +2,8 @@
 include 'vendor/autoload.php';
 include 'config.php';
 
+date_default_timezone_set('Europe/Berlin');
+
 $f = fopen('html/index.html','w');
 
 header_footer::fwrite_header($f);

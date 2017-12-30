@@ -134,6 +134,11 @@ img.emojione {
     margin-top: 0.3em
 }
 
+.birthday {
+    font-size: 3em;
+    color: red;
+}
+
 .video.thumbnail {
     position: relative;
 }

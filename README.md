@@ -1,18 +1,18 @@
 
 # WhatsApp Chat nach HTML und PDF wandeln
 
-TODO:
-- [x] Empfänger/Sender auflösen
-- [x] Whatsapp Design
-- [x] Emoji durch Bilder ersetzen
-- [x] fehlende Bilder rot ausgeben ("Bild fehlt [Name]") + Liste nach Abschluss
-- [x] Videos einbinden, Thumbnails kommen über Browser selbst
-- [x] bei Tagen Timons Alter mit berechnen
-- [x] Video-Thumbnails (läd schneller)
-- [x] Text bricht in PDF um bei Zeit - via Chrome Headless rendern
-- [x] Script um *.db zu adb pullen
-- [x] fehlende Medien in JSON schreiben (jedes Mal neu)
-- [x] Script für adb pull von fehlender Media von Smartphone
+Features:
+- Empfänger/Sender auflösen
+- Whatsapp Design
+- Emoji durch Bilder ersetzen
+- fehlende Bilder rot ausgeben ("Bild fehlt [Name]") + Liste nach Abschluss
+- Videos einbinden, Thumbnails kommen über Browser selbst
+- bei Tagen Timons Alter mit berechnen
+- Video-Thumbnails (läd schneller)
+- Text bricht in PDF um bei Zeit - via Chrome Headless rendern
+- Script um *.db zu adb pullen
+- fehlende Medien in JSON schreiben (jedes Mal neu)
+- Script für adb pull von fehlender Media von Smartphone
 
 ## Herausforderungen
 - WhatsApp DBs vom nicht-gerooteten Smartphone herunterbekommen und decrypten
@@ -23,7 +23,19 @@ TODO:
 - aus Videos Thumbnail erstellen und mit Play-Button (Single-Div) einbinden
 - Timons Alter bzgl. aktuellen Tag relativ berechnen und in Tages-Headline ausgeben
 
+## Installation
+
+- PHP 7
+- wget: `brew install wget`
+- pdfjam:
+  1. `brew cask install basictex`
+  2. `sudo tlmgr install pdfjam`
+  3. in .zshrc PATH="..:/Library/TeX/Distributions/Programs/texbin"
+- Google Chrome
+
 ## msgstore.db.crypt12 dekrypten
+
+### automatisch
 
 - man braucht den Schlüssel..
 - http://whatcrypt.com/
@@ -103,6 +115,19 @@ Operation complete
 
 Please press Enter to quit...
 ```
+
+### manuell via Emulator
+
+Mit Android 7 hat es bei mir nicht mehr funktioniert, das Backup war immer leer. Daher folgender Umweg über den Emulator.
+
+0. in Whatsapp auf eigenen Handy Backup auf Google Drive durchführen/aktualisieren
+1. Android Studio 3 installieren
+2. SDKs für Android 6 (API 23) installieren via SDK Manager (Android Studio -> Tools -> Android -> SDK Manager)
+3. AVD Manager starten, Android 6 Device mit passenden Image (x86) anlegen, starten
+4. in Emulator aktuelles Whatsapp installieren
+5. Backup aus Google Drive wiederherstellen (Messages reichen, Medien laufen dann im Hintergrund, ist egal)
+6. `WhatsAppKeyDBExtract.sh` gegen Emulator laufen lassen (deinstalliert Whatsapp, installiert altes Whatsapp, macht Backup, läd das runter und entpackt es)
+
 
 ## msgstore.db und wa.db einbinden
 
