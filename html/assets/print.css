@@ -6,3 +6,4 @@ a { color: darkblue; }
 small, .gray { color: gray !important; }
 .image_broken, .yt_broken { color: darkred; }
 .yt_platzhalter { color: darkblue; }
+.birthday { color: red !important; }

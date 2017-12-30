@@ -33,6 +33,15 @@ Features:
   3. in .zshrc PATH="..:/Library/TeX/Distributions/Programs/texbin"
 - Google Chrome
 
+## Setup
+
+- Verz. erstellen: `./source`, `./pdf`
+- `composer install`
+- "msgstore.db.crypt12 dekrypten" ausführen -> legt entschlüsselte `*.db` in `./source` ab
+- "Medien herunterladen" durchführen -> WhatsApp Medien vom Smartphone herunterladen
+- "PDF bauen" ausführen
+
+
 ## msgstore.db.crypt12 dekrypten
 
 ### automatisch
