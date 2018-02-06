@@ -19,9 +19,16 @@ class bild {
           fwrite($f, '
   <div class="image_broken">[Bild fehlt: '.$pic.']</div>');
         } else {
+
+          // TODO umkopieren für Archivierung
+          $pic_trg = 'bilder/'.basename($pic);
+          if (!file_exists('html/'.$pic_trg)) {
+            $ok = copy('html/'.$pic, 'html/'.$pic_trg); 
+            print 'b'.($ok?'+':'-');
+          }
           fwrite($f, '
   <div class="bild thumbnail">
-    <img src="/'.$pic.'">
+    <img src="/'.$pic_trg.'">
   </div>');
         }
         if (!empty($msg['media_caption'])) {
